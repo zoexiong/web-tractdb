@@ -1,4 +1,5 @@
-nginxproxy:
+tests_main:
+  container_name: tests_main
   image: "nginx"
   ports:
     - "80:80"

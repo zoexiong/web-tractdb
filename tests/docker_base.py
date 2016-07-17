@@ -76,9 +76,9 @@ def machine_console():
         compile_config_yaml = yaml.safe_load(f)
 
     # Assemble our command
-    command = '"{}" "{}"'.format(
+    command = 'cmd /c start "{}" "{}"'.format(
         compile_config_yaml['config']['local']['docker']['cmd_bash'],
-        os.path.normpath(os.path.join(os.getcwd(), 'base/docker-machine/start.sh')).replace('\\', '/')
+        os.path.normpath(os.path.join(os.getcwd(), 'base/docker-machine/machine_console.sh')).replace('\\', '/')
     )
 
     # Call the command, noting that this cannot be piped

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #user {
+                text-align: left;
+            }
+            #pass {
+                text-align: left;
+            }
+            #userText {
+                position: fixed;
+                left: 80px;
+                top: 16px;
+            }
+            #passText {
+                position: fixed;
+                left: 80px;
+                top: 50px;
+            }
+            #login {
+                position: fixed;
+                left: 80px;
+                top: 90px;
+            }
+            #register {
+                position: fixed;
+                left: 160px;
+                top: 90px;
+            }
+        </style>
+    </head>
+    <body>
+        <p id = "user">Username:</p>
+        <p id = "pass">Password:</p>
+        <textarea id = "userText" rows = "1" cols = "20"></textarea>
+        <textarea id ="passText" rows = "1" cols = "20"></textarea>
+        <button id = "login" onclick = "loginFunction()">Login</button>
+        <button id = "register" onclick = "registerFunction()">Register Now!</button>
+
+        <script>
+            function loginFunction() {
+                var userTxt = document.getElementById("userText");
+                var passTxt = document.getElementById("passText");
+
+                if (passTxt.value.length < 7 || userTxt.value.length == 0) {
+                    alert("Incorrect Login Information");
+                }
+            }
+            function registerFunction() {
+                window.location.href = "/register";
+            }
+        </script>
+    </body>
+</html>

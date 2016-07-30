@@ -5,6 +5,9 @@ import sys
 import yaml
 
 
+VERBOSE = False
+
+
 def check_result(result, description):
     if result.failed:
         print('========================================')
@@ -23,11 +26,18 @@ def check_result(result, description):
 
 
 @invoke.task
+def verbose():
+    global VERBOSE
+
+    VERBOSE = True
+
+
+@invoke.task
 def update_dependencies():
     # Parameters to keep everything silent
     params_silent = {
         'encoding': sys.stdout.encoding,
-        'hide': 'both',
+        'hide': 'both' if VERBOSE is False else None,
         'warn': True
     }
 
@@ -123,6 +133,15 @@ def compile_config():
         template = jinja2_environment.get_template(jinja2_entry['in'])
         with open(jinja2_entry['out'], 'w') as f:
             f.write(template.render(compile_config_yaml['config']))
+
+
+@invoke.task()
+def compile_requirements():
+    # Compile the requirements file
+    invoke.run(
+        'pip-compile --upgrade --output-file requirements3.txt requirements3.in',
+        encoding=sys.stdout.encoding
+    )
 
 
 @invoke.task(pre=[update_dependencies])

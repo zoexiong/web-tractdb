@@ -18,3 +18,7 @@ node_modules
 
 # Any secrets
 secrets
+
+# Localized compose files
+tests/test-compose.localized.yml
+

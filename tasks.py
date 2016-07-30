@@ -1,11 +1,20 @@
+import tests.docker_base as docker_base
 import invoke
 import jinja2
+import os
 import re
 import sys
 import yaml
 
 
 VERBOSE = False
+
+
+@invoke.task
+def verbose():
+    global VERBOSE
+
+    VERBOSE = True
 
 
 def check_result(result, description):
@@ -23,13 +32,6 @@ def check_result(result, description):
         print(result.stderr)
         print('========================================')
         raise Exception('Failed to {}'.format(description))
-
-
-@invoke.task
-def verbose():
-    global VERBOSE
-
-    VERBOSE = True
 
 
 @invoke.task
@@ -144,6 +146,33 @@ def compile_requirements():
     )
 
 
+@invoke.task()
+def docker_machine_console():
+    docker_base.machine_console()
+
+
+@invoke.task()
+def docker_machine_ensure():
+    docker_base.machine_ensure()
+
+
+@invoke.task()
+def docker_machine_ip():
+    print(docker_base.ip())
+
+
+@invoke.task()
+def docker_machine_start():
+    docker_base.machine_ensure()
+    docker_base.compose_run('tests/test-compose.yml', 'build')
+    docker_base.compose_run('tests/test-compose.yml', 'up -d')
+
+
+@invoke.task()
+def docker_machine_stop():
+    docker_base.compose_run('tests/test-compose.yml', 'stop')
+
+
 @invoke.task(pre=[update_dependencies])
 def serve_production():
     invoke.run(
@@ -163,3 +192,4 @@ def serve_test():
 @invoke.task
 def update_base():
     invoke.run('git pull https://github.com/fogies/web-jekyll-base.git master', encoding=sys.stdout.encoding)
+    invoke.run('git pull https://github.com/fogies/testwithdocker-base.git master', encoding=sys.stdout.encoding)

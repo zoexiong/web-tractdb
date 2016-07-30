@@ -1,12 +1,18 @@
 {# This file compiles to .travis.yml -#}
 # This file compiled from .travis.yml.in
 
-sudo: false
+sudo: required
 
 language: python
 
+services:
+  - docker
+
 python:
-  - "{{ python_version }}"
+  - "{{ local.python.version }}"
+
+env:
+  - BASE_DOCKER_ON_TRAVIS=true
 
 cache:
   pip: true
@@ -15,22 +21,38 @@ cache:
     - /home/travis/.rvm/gems
 
 install:
-  # Install Ruby
-  - rvm install {{ ruby_version }}
-  - rvm @global do gem install bundler -v {{ bundler_version }}
-  - rvm @global do gem uninstall bundler -v "!={{ bundler_version }}"
-  - rvm use {{ ruby_version }} --default
-
   # Install NodeJS
-  - nvm install {{ node_version }}
+  - nvm install {{ local.node.version }}
 
   # Install Python dependencies
-  - python -m pip install --upgrade pip=={{ pip_version }}
+  - python -m pip install --upgrade pip=={{ local.python.pip_version }}
   - python -m pip install -r requirements3.txt
+
+  # Install Ruby
+  - rvm install {{ local.ruby.version }}
+  - rvm @global do gem install bundler -v {{ local.ruby.bundler_version }}
+  - rvm @global do gem uninstall bundler -v "!={{ local.ruby.bundler_version }}"
+  - rvm use {{ local.ruby.version }} --default
+
+  # Install Docker
+  - apt-cache madison docker-engine
+
+  - sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine={{ docker.travis.version }}
+
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/{{ docker.travis.compose_version }}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+  - docker version
+  - docker-compose version
 
   # Invoke will get our other dependencies
   - invoke update_dependencies
 
 script:
+  - |
+    invoke docker_machine_start
+    sleep {{ docker.travis.compose_up_delay }}
   - nosetests
 {# This comment gives us a newline at the end of the generated file #}

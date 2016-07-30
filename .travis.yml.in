@@ -31,7 +31,12 @@ install:
   # Install Ruby
   - rvm install {{ local.ruby.version }}
   - rvm @global do gem install bundler -v {{ local.ruby.bundler_version }}
-  - rvm @global do gem uninstall bundler -v "!={{ local.ruby.bundler_version }}"
+  - |
+    bundler_uninstall=$( rvm @global do gem list ^bundler$ -i -v "!={{ local.ruby.bundler_version }}" )
+    if [ "$bundler_uninstall" == "true" ]
+    then
+      rvm @global do gem uninstall bundler -v "!={{ local.ruby.bundler_version }}"
+    fi
   - rvm use {{ local.ruby.version }} --default
 
   # Install Docker

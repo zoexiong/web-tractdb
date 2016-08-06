@@ -200,10 +200,10 @@ def serve_production():
     )
 
 
-@invoke.task(pre=[update_dependencies])
+@invoke.task(pre=[update_dependencies, docker_machine_docker_localize])
 def serve_test():
     invoke.run(
-        'bundle exec jekyll serve -t --config _config.yml,_config-test.yml --watch --force_polling',
+        'bundle exec jekyll serve -t --config _config.yml,_config-test.localized.yml --watch --force_polling',
         encoding=sys.stdout.encoding
     )
 

@@ -16,6 +16,7 @@ env35
 node_modules
 
 # Localized files
+_config-test.localized.yml
 tests/test-compose.localized.yml
 
 # Any secrets, such as passwords or keys

@@ -35,3 +35,5 @@ compile_docker_localize:
   entries:
     - in:  tests/test-compose.yml
       out: tests/test-compose.localized.yml
+    - in:  _config-test.yml
+      out: _config-test.localized.yml

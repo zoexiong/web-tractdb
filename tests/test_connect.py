@@ -5,8 +5,8 @@ import unittest
 
 def setup():
     docker_base.compose_ensure_up(
-        'tests/test-compose.yml',
-        'tests_main'
+        'tests/test-compose.localized.yml',
+        'test_main'
     )
 
 
@@ -28,4 +28,3 @@ class TestConnect(unittest.TestCase):
             response.status_code,
             200
         )
-

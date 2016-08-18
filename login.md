@@ -5,10 +5,11 @@ title_bar: "Login"
 title_secondary: ""
 
 angular_includes:
-  - "{{ site.baseurl }}/app/controllers/loginController.js"
+  - "{{ site.baseurl }}/app/tractdbConfig.js"
+  - "{{ site.baseurl }}/app/loginApp.js"
 ---
 
-<div ng-app="serverConfigApp" ng-controller="loginController">
+<div ng-app="loginApp" ng-controller="loginController">
     <div class = "container">
         <div class="wrapper">
 		        <form id="loginForm" name="loginForm" class="form-signin">       

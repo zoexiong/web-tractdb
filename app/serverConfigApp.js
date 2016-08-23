@@ -4,10 +4,12 @@ app.controller(
     'serverConfigController',
     [
         '$scope', '$http', 'BASEURL_PYRAMID',
-        function($scope, $http, BASEURL_PYRAMID) {
+        function ($scope, $http, BASEURL_PYRAMID) {
             $http({
-                method : 'GET',
-                url : BASEURL_PYRAMID
+                method: 'GET',
+                url: BASEURL_PYRAMID
+                headers: {'Content-Type': 'application/json'},
+                data: ''
             }).then(function onSuccess(response) {
                 $scope.serverConfig = response.data;
             }, function onError(response) {

@@ -1,13 +1,5 @@
 ---
-layout: default
-modal-id: 1
-date: 2016-07-18
-img: cabin.png
-alt: image-alt
-project-date: July 2014
-client: The Client
-category: Web Development
-description: The description of the project
+layout: base/bar-sidebar-none
 title: "title"
 title_bar: "title_bar"
 title_secondary: "title_secondary"
@@ -22,4 +14,3 @@ Server Config: {{ 'serverConfig' | angular }}<br/><br/>
 <p><a href = "/login">Login</a></p>
 <p><a href = "/register">Register</a></p>
 </div>
-<

@@ -489,7 +489,8 @@ font-size: 12px;
     height:200px;
     overflow:hidden;
     border-radius:50%;
-    margin-left:50%;
+    margin-left:22%;
+    margin-top:30px;
 }
 
 .circular--landscape img{
@@ -497,4 +498,9 @@ font-size: 12px;
     height:100%;
     margin-left:0;
     margin-top:0%;
+}
+
+.account-list{
+    border:#000000 2px;
+    border-radius: 5px;
 }

@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 layout: base/bar/bar-sidebar-none
+=======
+layout: default
+>>>>>>> 5a86082aae0bbba410c5178ebf724ccc968b178e
 modal-id: 1
 date: 2016-07-18
 img: cabin.png

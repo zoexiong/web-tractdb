@@ -4,14 +4,17 @@
 <html>
   <head lang="en">
     <!-- PageHeader -->
-    {% include base/pageheader.html %}
+    {% include base/pagehead.html %}
 	</head>
 	<body class="layout-freelancer" id="{{ page.url | slugify: 'pretty' }}">
     <!-- NavHeader -->
+    {% include base/freelancer/nav.html %}
 
     <!-- Main -->
     <div class="container" id="base-main" >
       <!-- Bar -->
+      {% include base/freelancer/list_accounts.html %}
+      {% include base/freelancer/footer.html %}
 
       <!-- Content -->
       {{ content }}
@@ -22,3 +25,27 @@
     {% include base/endofbody.html %}
 	</body>
 </html>
+
+<!--
+    include base/freelance/head.html
+    <body id="page-top" class="index">
+    include base/freelance/nav.html
+    include base/freelance/list_accounts.html
+    include base/freelance/footer.html
+    include base/freelance/js.html
+    </body>
+
+    include head.html
+    <body id="page-top" class="index">
+    include nav.html
+    include header.html
+    include grid.html
+    include about.html
+    include footer.html
+    include modals.html
+    include js.html
+    </body>
+
+    include css/bootstrap.min.css
+    include css/main.css
+-->

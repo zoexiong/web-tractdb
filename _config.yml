@@ -16,11 +16,14 @@ lessc: node_modules/.bin/lessc
 exclude:
   # Bootstrap
   - bootstrap/less
-  # CSS/LESS files, these are all included by css/base/styles.less
+  # CSS/LESS files, these are all included by other less files and cannot compile on their own
   - css/styles.less
-  - css/base/bar.less
   - css/base/base.less
   - css/base/syntax.css
+  - css/base/bar/bar.less
+  - css/base/freelancer/bootswatch-flatly.less
+  - css/base/freelancer/bootswatch-flatly-variables.less
+  - css/base/freelancer/startbootstrap-freelancer.less
   # Node
   - node_modules
   - npm-shrinkwrap.json

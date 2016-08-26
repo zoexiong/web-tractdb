@@ -1,8 +1,6 @@
 ---
-layout: base/bar-sidebar-none
+layout: base/freelancer/freelancer
 title: "Login"
-title_bar: "Login"
-title_secondary: ""
 
 angular_includes:
   - "{{ site.baseurl }}/app/tractdbConfig.js"

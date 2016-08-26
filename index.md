@@ -1,5 +1,6 @@
 ---
-layout: default
+layout: base/freelancer/freelancer
+
 modal-id: 1
 date: 2016-07-18
 img: cabin.png
@@ -17,9 +18,17 @@ angular_includes:
   - "{{ site.baseurl }}/app/serverConfigApp.js"
 ---
 
+<br/>
+<br/>
+<br/>
+<br/>
+
 <div ng-app="serverConfigApp" ng-controller="serverConfigController" ng-strict-di>
- <div class="base-content"><p id="server-config">Server Config: {{ 'serverConfig' | angular }}<br/><br/></p>
-<p><a href = "/login">Login</a></p>
-<p><a href = "/register">Register</a></p>
-</div>
+  <div class="base-content">
+    <p id="server-config">Server Config: {{ 'serverConfig' | angular }}</p>
+    <br/>
+    <br/>
+    <p><a href = "/login">Login</a></p>
+    <p><a href = "/register">Register</a></p>
+  </div>
 </div>

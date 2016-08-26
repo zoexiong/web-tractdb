@@ -1,9 +1,6 @@
 ---
-<<<<<<< HEAD
-layout: base/bar/bar-sidebar-none
-=======
-layout: default
->>>>>>> 5a86082aae0bbba410c5178ebf724ccc968b178e
+layout: base/freelancer/freelancer
+
 modal-id: 1
 date: 2016-07-18
 img: cabin.png
@@ -20,6 +17,11 @@ angular_includes:
   - "{{ site.baseurl }}/app/tractdbConfig.js"
   - "{{ site.baseurl }}/app/serverConfigApp.js"
 ---
+
+<br/>
+<br/>
+<br/>
+<br/>
 
 <div ng-app="serverConfigApp" ng-controller="serverConfigController" ng-strict-di>
   <div class="base-content">

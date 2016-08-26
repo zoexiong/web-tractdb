@@ -5,8 +5,12 @@
   <head lang="en">
     <!-- PageHeader -->
     {% include base/pagehead.html %}
+
+    <!-- Styles -->
+    <link href="{{ site.baseurl }}/css/base/bar/styles.css" rel="stylesheet">
+
 	</head>
-	<body class="layout-sidebar-none" id="{{ page.url | slugify: 'pretty' }}">
+	<body class="layout-bar" id="{{ page.url | slugify: 'pretty' }}">
     <!-- NavHeader -->
     {% include base/bar/navheader.html %}
 

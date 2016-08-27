@@ -1,0 +1,30 @@
+---
+---
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <!-- PageHeader -->
+    {% include base/pagehead.html %}
+
+    <!-- Styles -->
+    <link href="{{ site.baseurl }}/css/base/bar/styles.css" rel="stylesheet">
+
+	</head>
+	<body class="layout-bar" id="{{ page.url | slugify: 'pretty' }}">
+    <!-- NavHeader -->
+    {% include base/bar/navheader.html %}
+
+    <!-- Main -->
+    <div class="container" id="base-main" >
+      <!-- Bar -->
+      {% include base/bar/barheader.html %}
+
+      <!-- Content -->
+      {{ content }}
+    </div>
+    <!-- Main End -->
+
+    <!-- EndOfBody -->
+    {% include base/bodyend.html %}
+	</body>
+</html>

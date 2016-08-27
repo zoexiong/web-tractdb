@@ -1,10 +1,11 @@
+
 var app = angular.module('listAccountsApp', ['tractdb.config']);
 
 app.controller(
     'listAccountsController',
     [
         '$scope', '$http', 'BASEURL_PYRAMID',
-        function ($scope, $http) {
+        function ($scope, $http, BASEURL_PYRAMID) {
             $http({
                 method: 'GET',
                 url: BASEURL_PYRAMID + '/accounts',
@@ -17,4 +18,3 @@ app.controller(
             });
         }
     ]
-);

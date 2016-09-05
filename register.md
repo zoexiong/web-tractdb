@@ -16,6 +16,7 @@ angular_includes:
 		<input class="form-control" name="account" placeholder="Account" autofocus="" required="" maxlength="20" ng-model="viewModel.account" /><br/>
 		<input type="password" class="form-control" name="password" placeholder="Password" required="" maxlength="24" ng-model="viewModel.password" /><br/>  
         <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required="" maxlength="24" ng-model="viewModel.confirmPassword" /><br/>  
+
         <p class = "tac">By clicking on "Register", I agree to the <a href = "/tac">Terms and Conditions</a></p>
         <button class="btn btn-small" name="Cancel" value="Cancel">Cancel</button> 
         <button class="btn btn-small btn-primary" name="Register" value="Register" type="submit">Register</button><br/><br/>

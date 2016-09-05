@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+
+   <!--angular-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <!--app-->
+    <script src="app/checkboxApp.js"></script>
+         <script src="app/tractdbConfig.js"></script>
+    <!--checklist-model-->
+    <script src="js/directives/list_account.js"></script>
+
+<!--      -&#45;&#45;
+layout: base/freelancer/freelancer
+title: "Login"
+
+angular_includes:
+  - "{{ site.baseurl }}/app/tractdbConfig.js"
+  - "{{ site.baseurl }}/app/loginApp.js"
+-&#45;&#45;-->
+
+  </head>
+  <body>
+
+
+      <div ng-controller="Ctrl1" class="row">
+        <div class="col-xs-12 col-sm-6">
+          <div class="well">
+              <label ng-repeat="role in roles">
+  <input type="checkbox" checklist-model="user.roles" checklist-value="role"> {{role}}
+</label>
+          </div>
+
+          <button ng-click="checkAll()" style="margin-right: 10px">Check all</button>
+          <button ng-click="uncheckAll()" style="margin-right: 10px">Uncheck all</button>
+          <button ng-click="checkFirst()">Check first</button>
+          <button ng-click="setToNull()" ng-if="setToNull">Set to null</button>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <h3>Accounts selected:</h3>
+          <pre>{{user.roles|json}}</pre>
+        </div>
+      </div>
+
+  </body>
+
+
+
+
+</html>
+

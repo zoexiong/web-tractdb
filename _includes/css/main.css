@@ -504,3 +504,8 @@ font-size: 12px;
     border:#000000 2px;
     border-radius: 5px;
 }
+
+.add-account{
+    margin:20px;
+    padding:20px;
+}

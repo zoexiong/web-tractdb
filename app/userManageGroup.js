@@ -69,13 +69,13 @@ app.controller('searchGroup', ['$scope', function($scope) {
  }]);*/
 
 app.controller('getRequest', ['$scope', function($scope) {
-    $scope.requests = [{group_name:'CSE',data_type:'Sleep log, Weight',group_id:1},{group_name:'UW-Medicine',data_type:'Heart-rate',group_id:2}];
+    $scope.requests = [{group_name:'CSE',data_type:['Sleep log', 'Weight'],group_id:1},{group_name:'UW-Medicine',data_type:['Heart-rate'],group_id:2}];
 }]);
 
 /*Todo:need to add back-end support for approve function*/
 app.controller('manageRequest', ['$scope', function($scope) {
     $scope.approveRequest=function(ID){
-        ID=$scope.request.group_id;
+        ID=$scope.sender.group_id;
         $http({
             method: 'POST',
             /*  need to add url for approve request
@@ -95,7 +95,7 @@ app.controller('manageRequest', ['$scope', function($scope) {
 
     };
     $scope.declineRequest=function(ID){
-        ID=$scope.request.group_id;
+        ID=$scope.sender.group_id;
         $http({
             method: 'POST',
             /*  need to add url for decline request
@@ -115,4 +115,33 @@ app.controller('manageRequest', ['$scope', function($scope) {
 
     };
 
+}]);
+
+
+app.controller('getAuthorization', ['$scope', function($scope) {
+    $scope.auths = [{group_name:'MSIM',data_type:['Sleep log', 'Weight'],group_id:1},{group_name:'UW-Medicine',data_type:['Sleep log'],group_id:2}];
+}]);
+
+/*Todo:need to add back-end support for this function*/
+app.controller('manageAuthorization', ['$scope', function($scope) {
+    $scope.cancelAuth=function(ID){
+        ID=$scope.auth.group_id;
+        $http({
+            method: 'POST',
+            /*  need to add url to cancel auth
+             url: BASEURL_PYRAMID + '/groups/auth',*/
+            headers: {'Content-Type': 'application/json'},
+            data: ID
+        }).then(
+            function (response) {
+                console.log('success ' + response);
+                window.alert('You\'ve cancel that authorization');
+            },
+            function (response) {
+                console.log('error' + response);
+                // TODO: on error response, popup error message and keep user on the same page
+                window.alert('Process failed, please try again.');
+            })
+
+    };
 }]);

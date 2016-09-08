@@ -46,9 +46,9 @@ Name: {{"group.name" | angular}}        ID:{{"group.id" | angular}}
 
 <div ng-controller='getRequest' class="col-md-4">
 <h3>Request to retrieve my data</h3>
-<div ng-repeat='request in requests'>
-<p>Request from <span style="color:blue">{{'request.group_name' | angular}}</span></p>
-<p>Data requested:<span style="color:blue"> {{'request.data_type' | angular}}</span></p>
+<div ng-repeat='sender in requests'>
+<p>Request from <span style="color:blue">{{'sender.group_name' | angular}}</span></p>
+<p>Data requested:<span style="color:blue"> {{'sender.data_type' | angular}}</span></p>
 <div ng-controller='manageRequest'>
 <button ng-click='approveRequest(ID)' class="btn" name="Approve" value="Approve" type="submit">Approve</button><br/><br/>
 <button ng-click='declineRequest(ID)' type="button" class="btn btn-danger" id="">Decline</button>
@@ -56,16 +56,19 @@ Name: {{"group.name" | angular}}        ID:{{"group.id" | angular}}
 </div>
 </div>
 
- <div class="col-md-4">
+ <div ng-controller='getAuthorization' class="col-md-4">
 <h3>Manage my authorization</h3>
-<p>Group: <span style="color:blue"> {{'groupname' | angular}}</span></p>
-<p>Data accessible: <span style="color:blue">{{'access' | angular}}</span></p>
-<button ng-click='' class="btn" name="" value="" type="">Cancel authorization</button><br/><br/>
+<div ng-repeat='auth in auths'>
+<p>Group: <span style="color:blue"> {{'auth.group_name' | angular}}</span></p>
+<p>Data accessible: <span style="color:blue">{{'auth.data_type' | angular}}</span></p>
+<div ng-controller='manageAuthorization'>
+<button ng-click='cancelAuth(ID)' class="btn" name="cancel authorization" value="cancelAuth" type="button">Cancel authorization</button><br/><br/>
 <br>
- </div>
- </div>
+</div>
+</div>
+</div>
 
-<div>
+<div class='col-md-12'>
 <h3>My Report</h3>
 Add data visualization here
 </div>
@@ -82,6 +85,3 @@ Add data visualization here
 
 
 --------
-Todo: need to fix style of button (the size is fixed)
-need to add controller to show requests send by different groups (ng-repeat)
-need to add controller to send request to join group

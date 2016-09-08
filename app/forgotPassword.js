@@ -5,7 +5,6 @@ app.controller(
     [
         '$scope', '$http', 'BASEURL_PYRAMID',
         function ($scope, $http, BASEURL_PYRAMID) {
-            // TODO: stylistically, this 'bag of parameters' seems bad
             $scope.submitForm = function () {
                 $http({
                     method: 'POST',
@@ -15,8 +14,9 @@ app.controller(
                     data: $scope.viewAccount
                 }).then(
                     function (response) {
-                        console.log('Email send!: ' + response);
+                        console.log('An e-mail has been send to the above address: ' + response);
                         // TODO: on successful response, redirect user to dashboard
+                        window.alert('An e-mail has been send to the above address');
                     },
                     function (response) {
                         console.log('Send forgot password email error response: ' + response);
@@ -44,7 +44,7 @@ app.controller(
                   /*  need to add url for reset account
                     url: BASEURL_PYRAMID + '/accounts',*/
                     headers: {'Content-Type': 'application/json'},
-                    data: $scope.viewAccount
+                    data: postParams
                 }).then(
                     function (response) {
                         console.log('Reset successful: ' + response);

@@ -28,7 +28,7 @@ angular_includes:
         <button class="btn btn-small" name="Cancel" value="Cancel">Cancel</button>
         <button class="btn btn-small btn-primary" name="Login" value="Login" type="submit">Login</button><br/><br/>
         <p><a href = "/register">If you're a new user, register now!</a></p>
-        <p><a href = "/forgotPassword">Forgot Password?</a></p>
+        <p><a href = "/forgot_password">Forgot Password?</a></p>
       </form>
     </div>
   </div>

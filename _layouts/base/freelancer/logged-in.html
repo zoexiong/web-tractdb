@@ -1,0 +1,56 @@
+---
+---
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!-- PageHeader -->
+    {% include base/pagehead.html %}
+
+    <!-- Styles -->
+    <link href="{{ site.baseurl }}/css/base/freelancer/styles.css" rel="stylesheet">
+
+    <!--js-->
+<!--    <script type='text/javascript' href="{{ site.baseurl }}/app/loginApp.js"></script>-->
+
+</head>
+<body class="layout-freelancer" id="{{ page.url | slugify: 'pretty' }}">
+<!-- NavHeader -->
+{% include base/freelancer/nav-logged-in.html %}
+
+<!-- Main -->
+<div class="container" id="base-main" >
+    <!-- Content -->
+    {{ content }}
+
+    {% include base/freelancer/footer.html %}
+</div>
+<!-- Main End -->
+
+<!-- EndOfBody -->
+{% include base/bodyend.html %}
+</body>
+</html>
+
+<!--
+    include base/freelance/head.html
+    <body id="page-top" class="index">
+    include base/freelance/nav.html
+    include base/freelance/list_accounts.html
+    include base/freelance/footer.html
+    include base/freelance/js.html
+    </body>
+
+    include head.html
+    <body id="page-top" class="index">
+    include nav.html
+    include header.html
+    include grid.html
+    include about.html
+    include footer.html
+    include modals.html
+    include js.html
+    </body>
+
+    include css/bootstrap.min.css
+    include css/main.css
+-->

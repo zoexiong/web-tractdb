@@ -31,7 +31,7 @@ app.controller(
                 postParams.password = $scope.viewPassword;
                 var exdate=new Date();
                 exdate.setDate(exdate.getDate()+expiredays);
-                document.cookie=postParams.account+ "=" +escape(value)+
+                document.cookie=postParams.account+ "="+username+'?????'+
                     ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
             }
 
@@ -64,6 +64,7 @@ app.controller(
                     function (response) {
                         console.log('login success response: ' + response);
                         checkCookie();
+                        console.log(document.cookie);
                         $window.location.href = '/person';
                     },
                     function (response) {
@@ -76,6 +77,13 @@ app.controller(
         }
     ]
 );
+
+app.controller('logoutController',['$scope','$window',function($scope,$window){
+$scope.logout=function(){
+    document.cookie='';
+    $window.location.href = '/login'
+}
+}]);
 
 
 /*(function () {

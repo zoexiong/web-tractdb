@@ -145,3 +145,11 @@ app.controller('manageAuthorization', ['$scope', function($scope) {
 
     };
 }]);
+
+
+app.controller('logoutController',['$scope','$window',function($scope,$window){
+    $scope.logout=function(){
+        document.cookie='';
+        $window.location.href = '/login'
+    }
+}]);

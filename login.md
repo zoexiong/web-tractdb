@@ -17,7 +17,7 @@ angular_includes:
 
 
 <div ng-app="loginApp" ng-controller="loginController">
-  <div class = "container">
+  <div class = "container" onLoad="checkCookie()">
     <div class="wrapper">
       <form ng-submit="submitLoginForm()" id="loginForm" name="loginForm" class="form-signin">       
         <h3 class="form-signin-heading">Please Sign In</h3>

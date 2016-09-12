@@ -5,8 +5,9 @@ app.controller(
     [
         '$scope', '$http', 'BASEURL_PYRAMID','$window',
         function ($scope, $http, BASEURL_PYRAMID,$window) {
-            columnName='username';
-            function getCookie(viewAccount)
+
+/*        from w3school.com*/
+           /* function getCookie(viewAccount)
             {
                 if (document.cookie.length>0)
                 {
@@ -26,7 +27,7 @@ app.controller(
                 var exdate=new Date();
                 exdate.setDate(exdate.getDate()+expiredays);
                 document.cookie=columnName+"="+username+';path=/';
-/*                    ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())*/
+/!*                    ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())*!/
             }
 
             function checkCookie()
@@ -43,7 +44,8 @@ app.controller(
                         setCookie(columnName,username,365)
                     }
                 }
-            }
+            }*/
+
             // TODO: stylistically, this 'bag of parameters' seems bad
             $scope.submitLoginForm = function () {
                 postParams = {};
@@ -58,8 +60,7 @@ app.controller(
                 }).then(
                     function (response) {
                         console.log('login success response: ' + response);
-                        document.cookie='username='+$scope.viewAccount+';path=/';
-/*                        document.cookie='authed=true';*/
+                        document.cookie='username='+$scope.viewAccount+';path=/;';
                         console.log(document.cookie);
                         $window.location.href = '/person';
                     },
@@ -74,17 +75,35 @@ app.controller(
     ]
 );
 
+/*Todo:delete this controller from userManageGroup.js and try to use view or directive to apply this function*/
 app.controller('logoutController',['$scope','$window', function($scope,$window){
-$scope.logout=function(){
- /*   var date=new Date();
-    date.setTime(date.getTime()-10000);*/
-/*   Todo: it create another cookie instead of delete the previous one, need to debug,
- Also, I need to delete the logoutController in userManageGroup.js since it is temporarily used for testing*/
+    function getCookie()
+    {
+        Account='username';
+        if (document.cookie.length>0)
+        {
+            c_start=document.cookie.indexOf(Account + "=");
+            if (c_start!=-1)
+            {
+                c_start=c_start + Account.length+1;
+                c_end=document.cookie.indexOf(";",c_start);
+                if (c_end==-1) c_end=document.cookie.length;
+                return (document.cookie.substring(c_start,c_end));
+            }
+        }
+        return ""
+    }
+    $scope.accountName=getCookie();
+    $scope.logout=function(){
+        /*   var date=new Date();
+         date.setTime(date.getTime()-10000);*/
+        /*   Todo: it create another cookie instead of delete the previous one, need to debug,
+         Also, I need to delete the logoutController in userManageGroup.js since it is temporarily used for testing*/
 
- /*   document.cookie='authed=false'*/
-    $window.location.href = '/login';
-    console.log(document.cookie);
-}
+        /*   document.cookie='authed=false'*/
+        $window.location.href = '/login';
+        console.log(document.cookie);
+    }
 }]);
 
 

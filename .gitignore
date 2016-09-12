@@ -21,3 +21,4 @@ tests/test-compose.localized.yml
 
 # Any secrets, such as passwords or keys
 /secrets
+.Ds_Store

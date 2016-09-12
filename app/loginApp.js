@@ -5,48 +5,6 @@ app.controller(
     [
         '$scope', '$http', 'BASEURL_PYRAMID','$window',
         function ($scope, $http, BASEURL_PYRAMID,$window) {
-
-/*        from w3school.com*/
-           /* function getCookie(viewAccount)
-            {
-                if (document.cookie.length>0)
-                {
-                    c_start=document.cookie.indexOf(viewAccount + "=");
-                    if (c_start!=-1)
-                    {
-                        c_start=c_start + viewAccount.length+1;
-                        c_end=document.cookie.indexOf(";",c_start);
-                        if (c_end==-1) c_end=document.cookie.length;
-                        return unescape(document.cookie.substring(c_start,c_end))
-                    }
-                }
-                return ""
-            }
-            function setCookie(columnName,username,expiredays)
-            {
-                var exdate=new Date();
-                exdate.setDate(exdate.getDate()+expiredays);
-                document.cookie=columnName+"="+username+';path=/';
-/!*                    ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())*!/
-            }
-
-            function checkCookie()
-            {
-                username=getCookie(viewAccount);
-                if (username!=null && username!="")
-                {alert('Welcome again '+username+'!')}
-                else
-                {
-                    // username=prompt('Please enter your name:',"");
-                    username=viewAccount;
-                    if (username!=null && username!="")
-                    {
-                        setCookie(columnName,username,365)
-                    }
-                }
-            }*/
-
-            // TODO: stylistically, this 'bag of parameters' seems bad
             $scope.submitLoginForm = function () {
                 postParams = {};
                 postParams.account = $scope.viewAccount;
@@ -70,13 +28,16 @@ app.controller(
                         window.alert('Invalid username or password.');
                     }
                 );
-            }
+            };
+
         }
     ]
 );
 
-/*Todo:delete this controller from userManageGroup.js and try to use view or directive to apply this function*/
-app.controller('logoutController',['$scope','$window', function($scope,$window){
+
+
+
+app.controller('logoutController',['$scope','$window','BASEURL_PYRAMID','$http', function($scope,$window,$http,BASEURL_PYRAMID){
     function getCookie()
     {
         Account='username';
@@ -95,16 +56,98 @@ app.controller('logoutController',['$scope','$window', function($scope,$window){
     }
     $scope.accountName=getCookie();
     $scope.logout=function(){
-        /*   var date=new Date();
-         date.setTime(date.getTime()-10000);*/
-        /*   Todo: it create another cookie instead of delete the previous one, need to debug,
-         Also, I need to delete the logoutController in userManageGroup.js since it is temporarily used for testing*/
+    $http({
+         method: 'POST',
+         url: BASEURL_PYRAMID + '/logout'
+     }).then(
+         function (response) {
+             console.log('logout success response: ' + response);
+             document.cookie='';
+             $window.location.href = '/login';
+         },
+         function (response) {
+             console.log('logout error response: ' + response);
+             // TODO: on error response, popup error message and keep user on the same page
+             window.alert('please try again');
+         }
+     );
+     console.log(document.cookie);
+ }
+ }]);
 
-        /*   document.cookie='authed=false'*/
+
+
+/*Todo:delete this controller from userManageGroup.js and try to use view or directive to apply this function*/
+/*app.controller('logoutController',['$scope','$window', function($scope,$window){
+    function getCookie()
+    {
+        Account='username';
+        if (document.cookie.length>0)
+        {
+            c_start=document.cookie.indexOf(Account + "=");
+            if (c_start!=-1)
+            {
+                c_start=c_start + Account.length+1;
+                c_end=document.cookie.indexOf(";",c_start);
+                if (c_end==-1) c_end=document.cookie.length;
+                return (document.cookie.substring(c_start,c_end));
+            }
+        }
+        return ""
+    }
+    $scope.accountName=getCookie();
+    $scope.logout=function(){
+        /!*   var date=new Date();
+         date.setTime(date.getTime()-10000);*!/
+        /!*   Todo: it create another cookie instead of delete the previous one, need to debug,
+         Also, I need to delete the logoutController in userManageGroup.js since it is temporarily used for testing*!/
+
+        /!*   document.cookie='authed=false'*!/
         $window.location.href = '/login';
         console.log(document.cookie);
     }
-}]);
+}]);*/
+
+
+/*  code for set cookie and get cookie,      from w3school.com*/
+/* function getCookie(viewAccount)
+ {
+ if (document.cookie.length>0)
+ {
+ c_start=document.cookie.indexOf(viewAccount + "=");
+ if (c_start!=-1)
+ {
+ c_start=c_start + viewAccount.length+1;
+ c_end=document.cookie.indexOf(";",c_start);
+ if (c_end==-1) c_end=document.cookie.length;
+ return unescape(document.cookie.substring(c_start,c_end))
+ }
+ }
+ return ""
+ }
+ function setCookie(columnName,username,expiredays)
+ {
+ var exdate=new Date();
+ exdate.setDate(exdate.getDate()+expiredays);
+ document.cookie=columnName+"="+username+';path=/';
+ /!*                    ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())*!/
+ }
+
+ function checkCookie()
+ {
+ username=getCookie(viewAccount);
+ if (username!=null && username!="")
+ {alert('Welcome again '+username+'!')}
+ else
+ {
+ // username=prompt('Please enter your name:',"");
+ username=viewAccount;
+ if (username!=null && username!="")
+ {
+ setCookie(columnName,username,365)
+ }
+ }
+ }*/
 
 
 /*(function () {
@@ -132,4 +175,4 @@ app.controller('logoutController',['$scope','$window', function($scope,$window){
 })();*/
 
 /*
-http://stackoverflow.com/questions/27941876/how-to-redirect-to-another-page-using-angular-js*/
+from http://stackoverflow.com/questions/27941876/how-to-redirect-to-another-page-using-angular-js*/

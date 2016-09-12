@@ -146,7 +146,8 @@ app.controller('manageAuthorization', ['$scope', function($scope) {
     };
 }]);
 
-app.controller('logoutController',['$scope','$window', function($scope,$window){
+
+app.controller('logoutController',['$scope','$window','BASEURL_PYRAMID','$http', function($scope,$window,$http,BASEURL_PYRAMID){
     function getCookie()
     {
         Account='username';
@@ -165,13 +166,28 @@ app.controller('logoutController',['$scope','$window', function($scope,$window){
     }
     $scope.accountName=getCookie();
     $scope.logout=function(){
-        /*   var date=new Date();
-         date.setTime(date.getTime()-10000);*/
-        /*   Todo: it create another cookie instead of delete the previous one, need to debug,
-         Also, I need to delete the logoutController in userManageGroup.js since it is temporarily used for testing*/
-
-        /*   document.cookie='authed=false'*/
-            $window.location.href = '/login';
+/*        Todo: this doesn't work and it returns $http is not a function, need to fix this bug*/
+        /*$http({
+            method: 'POST',
+            url: BASEURL_PYRAMID + '/logout'
+        }).then(
+            function (response) {
+                console.log('logout success response: ' + response);
+                document.cookie='';
+                $window.location.href = '/login';
+            },
+            function (response) {
+                console.log('logout error response: ' + response);
+                // TODO: on error response, popup error message and keep user on the same page
+                window.alert('please try again');
+            }
+        );*/
+        var exdate=new Date();
+        exdate.setDate(exdate.getDate()-10000);
+        document.cookie="username="+Account+';path=/;'+"expires="+exdate.toGMTString();
+        /*delete the test cookie added by login controller*/
         console.log(document.cookie);
+/*        Todo:delete this line below when $http request works.*/
+        $window.location.href = '/login';
     }
 }]);

@@ -146,10 +146,32 @@ app.controller('manageAuthorization', ['$scope', function($scope) {
     };
 }]);
 
-
-app.controller('logoutController',['$scope','$window',function($scope,$window){
+app.controller('logoutController',['$scope','$window', function($scope,$window){
+    function getCookie()
+    {
+        Account='username';
+        if (document.cookie.length>0)
+        {
+            c_start=document.cookie.indexOf(Account + "=");
+            if (c_start!=-1)
+            {
+                c_start=c_start + Account.length+1;
+                c_end=document.cookie.indexOf(";",c_start);
+                if (c_end==-1) c_end=document.cookie.length;
+                return (document.cookie.substring(c_start,c_end));
+            }
+        }
+        return ""
+    }
+    $scope.accountName=getCookie();
     $scope.logout=function(){
-        document.cookie='';
-        $window.location.href = '/login'
+        /*   var date=new Date();
+         date.setTime(date.getTime()-10000);*/
+        /*   Todo: it create another cookie instead of delete the previous one, need to debug,
+         Also, I need to delete the logoutController in userManageGroup.js since it is temporarily used for testing*/
+
+        /*   document.cookie='authed=false'*/
+            $window.location.href = '/login';
+        console.log(document.cookie);
     }
 }]);

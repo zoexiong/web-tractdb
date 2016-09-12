@@ -5,17 +5,15 @@ app.controller(
     [
         '$scope', '$http', 'BASEURL_PYRAMID','$window',
         function ($scope, $http, BASEURL_PYRAMID,$window) {
-            function getCookie(postParams)
+            columnName='username';
+            function getCookie(viewAccount)
             {
-                postParams = {};
-                postParams.account = $scope.viewAccount;
-                postParams.password = $scope.viewPassword;
                 if (document.cookie.length>0)
                 {
-                    c_start=document.cookie.indexOf(postParams.account + "=");
+                    c_start=document.cookie.indexOf(viewAccount + "=");
                     if (c_start!=-1)
                     {
-                        c_start=c_start + postParams.account.length+1;
+                        c_start=c_start + viewAccount.length+1;
                         c_end=document.cookie.indexOf(";",c_start);
                         if (c_end==-1) c_end=document.cookie.length;
                         return unescape(document.cookie.substring(c_start,c_end))
@@ -23,29 +21,26 @@ app.controller(
                 }
                 return ""
             }
-
-            function setCookie(postParams,value,expiredays)
+            function setCookie(columnName,username,expiredays)
             {
-                postParams = {};
-                postParams.account = $scope.viewAccount;
-                postParams.password = $scope.viewPassword;
                 var exdate=new Date();
                 exdate.setDate(exdate.getDate()+expiredays);
-                document.cookie=postParams.account+ "="+username+'?????'+
-                    ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
+                document.cookie=columnName+"="+username+';path=/';
+/*                    ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())*/
             }
 
             function checkCookie()
             {
-                username=getCookie('username');
+                username=getCookie(viewAccount);
                 if (username!=null && username!="")
                 {alert('Welcome again '+username+'!')}
                 else
                 {
-                    username=prompt('Please enter your name:',"");
+                    // username=prompt('Please enter your name:',"");
+                    username=viewAccount;
                     if (username!=null && username!="")
                     {
-                        setCookie('username',username,365)
+                        setCookie(columnName,username,365)
                     }
                 }
             }
@@ -63,7 +58,8 @@ app.controller(
                 }).then(
                     function (response) {
                         console.log('login success response: ' + response);
-                        checkCookie();
+                        document.cookie='username='+$scope.viewAccount+';path=/';
+/*                        document.cookie='authed=true';*/
                         console.log(document.cookie);
                         $window.location.href = '/person';
                     },
@@ -78,10 +74,16 @@ app.controller(
     ]
 );
 
-app.controller('logoutController',['$scope','$window',function($scope,$window){
+app.controller('logoutController',['$scope','$window', function($scope,$window){
 $scope.logout=function(){
-    document.cookie='';
-    $window.location.href = '/login'
+ /*   var date=new Date();
+    date.setTime(date.getTime()-10000);*/
+/*   Todo: it create another cookie instead of delete the previous one, need to debug,
+ Also, I need to delete the logoutController in userManageGroup.js since it is temporarily used for testing*/
+
+ /*   document.cookie='authed=false'*/
+    $window.location.href = '/login';
+    console.log(document.cookie);
 }
 }]);
 

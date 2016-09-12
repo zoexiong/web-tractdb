@@ -1,4 +1,8 @@
 <!-- Navigation -->
+
+<!--js-->
+<script type='text/javascript' href="http://localhost:4000/app/loginApp.js"></script>
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -31,11 +35,10 @@
                     <a href="/profile">Profile and Settings</a>
                 </li>
                 <li>
-                    <div ng-controller="logoutController">
+                    <div ng-app='loginApp' ng-controller="logoutController">
                     <button ng-click="logout()">Logout</button>
                     </div>
                 </li>
-
 
             </ul>
         </div>

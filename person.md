@@ -1,5 +1,5 @@
 ---
-layout: base/freelancer/logged-in
+layout: base/freelancer/freelancer
 title: "Dashboard - Person"
 
 angular_includes:
@@ -9,9 +9,13 @@ angular_includes:
 <br><br><br><br><br><br><br><br><br>
 
 <div ng-app='userManageGroup'>
-<div ng-controller='logoutController'>
+
+
+<div ng-controller="logoutController">
+<p>Welcome, {{'accountName' | angular}}</p>
 <button ng-click="logout()">Logout</button>
-    </div>
+</div>
+                    
 <h3>Connect my device</h3>
 <br/>
 <h4>Choose my device</h4>
@@ -76,7 +80,7 @@ Add data visualization here
 </div>
 
 </div>
-
+</div>
 
 
   <style>

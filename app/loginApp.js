@@ -35,7 +35,7 @@ app.controller(
 );
 
 
-
+/*todo: use angular routes for login and logout process and add code to check condition before load /person page*/
 
 app.controller('logoutController',['$scope','$window','BASEURL_PYRAMID','$http', function($scope,$window,$http,BASEURL_PYRAMID){
     function getCookie()
@@ -56,60 +56,36 @@ app.controller('logoutController',['$scope','$window','BASEURL_PYRAMID','$http',
     }
     $scope.accountName=getCookie();
     $scope.logout=function(){
-    $http({
+        /*        Todo: this doesn't work and it returns $http is not a function, need to fix this bug*/
+        /*$http({
          method: 'POST',
          url: BASEURL_PYRAMID + '/logout'
-     }).then(
+         }).then(
          function (response) {
-             console.log('logout success response: ' + response);
-             document.cookie='';
-             $window.location.href = '/login';
+         console.log('logout success response: ' + response);
+         document.cookie='';
+         $window.location.href = '/login';
          },
          function (response) {
-             console.log('logout error response: ' + response);
-             // TODO: on error response, popup error message and keep user on the same page
-             window.alert('please try again');
+         console.log('logout error response: ' + response);
+         // TODO: on error response, popup error message and keep user on the same page
+         window.alert('please try again');
          }
-     );
-     console.log(document.cookie);
- }
- }]);
-
-
-
-/*Todo:delete this controller from userManageGroup.js and try to use view or directive to apply this function*/
-/*app.controller('logoutController',['$scope','$window', function($scope,$window){
-    function getCookie()
-    {
-        Account='username';
-        if (document.cookie.length>0)
-        {
-            c_start=document.cookie.indexOf(Account + "=");
-            if (c_start!=-1)
-            {
-                c_start=c_start + Account.length+1;
-                c_end=document.cookie.indexOf(";",c_start);
-                if (c_end==-1) c_end=document.cookie.length;
-                return (document.cookie.substring(c_start,c_end));
-            }
-        }
-        return ""
-    }
-    $scope.accountName=getCookie();
-    $scope.logout=function(){
-        /!*   var date=new Date();
-         date.setTime(date.getTime()-10000);*!/
-        /!*   Todo: it create another cookie instead of delete the previous one, need to debug,
-         Also, I need to delete the logoutController in userManageGroup.js since it is temporarily used for testing*!/
-
-        /!*   document.cookie='authed=false'*!/
-        $window.location.href = '/login';
+         );*/
+        var exdate=new Date();
+        exdate.setDate(exdate.getDate()-10000);
+        document.cookie="username="+Account+';path=/;'+"expires="+exdate.toGMTString();
+        /*delete the test cookie added by login controller*/
         console.log(document.cookie);
+        /*        Todo:delete this line below when $http request works.*/
+        $window.location.href = '/login';
     }
-}]);*/
+}]);
+
+/*Todo:delete the logout controller from userManageGroup.js and try to use view or directive to apply this function*/
 
 
-/*  code for set cookie and get cookie,      from w3school.com*/
+/*  Sample code for setting cookie and get cookie,      from w3school.com*/
 /* function getCookie(viewAccount)
  {
  if (document.cookie.length>0)
@@ -149,30 +125,3 @@ app.controller('logoutController',['$scope','$window','BASEURL_PYRAMID','$http',
  }
  }*/
 
-
-/*(function () {
-    'use strict';
-
-    angular
-        .module('app')
-        .controller('LoginCtrl', LoginCtrl);
-
-    LoginCtrl.$inject = ['$window', 'loginSrv', 'notify'];
-
-    function LoginCtrl($window, loginSrv, notify) {
-        /!* jshint validthis:true *!/
-        var vm = this;
-        vm.validateUser = function () {
-            loginSrv.validateLogin(vm.username, vm.password).then(function (data) {
-                if (data.isValidUser) {
-                    $window.location.href = '/index.html';
-                }
-                else
-                    alert('Login incorrect');
-            });
-        }
-    }
-})();*/
-
-/*
-from http://stackoverflow.com/questions/27941876/how-to-redirect-to-another-page-using-angular-js*/

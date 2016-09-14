@@ -16,6 +16,8 @@ title_secondary: "title_secondary"
 angular_includes:
   - "{{ site.baseurl }}/app/tractdbConfig.js"
   - "{{ site.baseurl }}/app/serverConfigApp.js"
+  - "{{ site.baseurl }}/app/routes.js"  
+  
 ---
 
 <br/>
@@ -23,12 +25,6 @@ angular_includes:
 <br/>
 <br/>
 
-<div ng-app="serverConfigApp" ng-controller="serverConfigController" ng-strict-di>
-  <div class="base-content">
-    <p id="server-config">Server Config: {{ 'serverConfig' | angular }}</p>
-    <br/>
-    <br/>
-    <p><a href = "/login">Login</a></p>
-    <p><a href = "/register">Register</a></p>
-  </div>
+<div ng-app="routeApp">
+        <div ng-view></div>
 </div>

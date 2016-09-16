@@ -15,14 +15,17 @@
         <div>
             <div class="account-list">
                 <h4>Manage Accounts</h4>
+
+<!-- Todo: filter doesn't work with the delete function since a single controller is needed here to get the accurate account name instead of index-->
+
                 <div>
                     <label>Search:</label>
                     <input type="search" ng-model="search" placeholder="Enter to Search">
                 </div>
                 <div ng-repeat="account in accounts | filter:search | filter:new_search" class="row">
-                    <input type="checkbox" checklist-model="user.accounts" checklist-value="account"> {{"account" | angular}}
-                    <div ng-controller="deleteAccountController">
-                        <button type="button" class="btn btn-danger" id="deleteAccountButton" ng-click="deleteSubmit(username)">Delete</button>
+                    <input type="checkbox" checklist-model="user.accounts" checklist-value="account"> {{account}}
+                    <div>
+                        <button type="button" class="btn btn-danger" id="deleteAccountButton" ng-click="deleteSubmit($index)">Delete</button>
                     </div>
                 </div>
             </div>

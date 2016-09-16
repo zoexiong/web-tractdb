@@ -4,7 +4,7 @@
 
 
 
-        <p>Welcome, {{'accountName' | angular}}</p>
+        <p>Welcome, {{accountName}}</p>
         <button ng-click="logout()">Logout</button>
 
 
@@ -37,7 +37,7 @@
             <!--<input type="checkbox" checklist-model="" checklist-value=""> -->
             <div ng-repeat="group in groups">
                 <input type="checkbox">
-                Name: {{group.name}}        ID:{{"group.id" | angular}}
+                Name: {{group.name}}        ID:{{group.id}}
             </div>
             <button ng-click='submitRequest()' class="btn btn-small btn-primary" name="Add" value="Add" type="submit">Join</button><br/><br/>
 
@@ -45,9 +45,9 @@
         <div class="col-md-4">
             <h3>Request to retrieve my data</h3>
             <div ng-repeat='sender in requests'>
-                <p>Request from <span style="color:blue">{{'sender.group_name' | angular}}</span></p>
-                <p>Data requested:<span style="color:blue"> {{'sender.data_type' | angular}}</span></p>
-                <div ng-controller='manageRequest'>
+                <p>Request from <span style="color:blue">{{sender.group_name}}</span></p>
+                <p>Data requested:<span style="color:blue"> {{sender.data_type}}</span></p>
+                <div>
                     <button ng-click='approveRequest(ID)' class="btn" name="Approve" value="Approve" type="submit">Approve</button><br/><br/>
                     <button ng-click='declineRequest(ID)' type="button" class="btn btn-danger" id="">Decline</button>
                 </div>
@@ -57,9 +57,9 @@
         <div class="col-md-4">
             <h3>Manage my authorization</h3>
             <div ng-repeat='auth in auths'>
-                <p>Group: <span style="color:blue"> {{'auth.group_name' | angular}}</span></p>
-                <p>Data accessible: <span style="color:blue">{{'auth.data_type' | angular}}</span></p>
-                <div ng-controller='manageAuthorization'>
+                <p>Group: <span style="color:blue"> {{auth.group_name}}</span></p>
+                <p>Data accessible: <span style="color:blue">{{auth.data_type}}</span></p>
+                <div>
                     <button ng-click='cancelAuth(ID)' class="btn" name="cancel authorization" value="cancelAuth" type="button">Cancel authorization</button><br/><br/>
                     <br>
                 </div>

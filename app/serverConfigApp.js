@@ -7,7 +7,7 @@ app.controller(
         function ($scope, $http, BASEURL_PYRAMID) {
             $http({
                 method: 'GET',
-                url: BASEURL_PYRAMID
+                url: BASEURL_PYRAMID,
                 headers: {'Content-Type': 'application/json'},
                 data: ''
             }).then(function onSuccess(response) {

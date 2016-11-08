@@ -1,19 +1,19 @@
-var app = angular.module('serverConfigApp', ['tractdb.config']);
+var app = angular.module('listAccountsApp', ['tractdb.config']);
 
 app.controller(
-    'serverConfigController',
+    'listAccountsController',
     [
         '$scope', '$http', 'BASEURL_PYRAMID',
         function ($scope, $http, BASEURL_PYRAMID) {
             $http({
                 method: 'GET',
-                url: BASEURL_PYRAMID,
+                url: BASEURL_PYRAMID + '/accounts',
                 headers: {'Content-Type': 'application/json'},
-                data: ''
+                data: $scope.viewModel
             }).then(function onSuccess(response) {
-                $scope.serverConfig = JSON.stringify(response.data, undefined, 2);
+                $scope.accounts = response.data;
             }, function onError(response) {
-                $scope.myWelcome = response.statusText;
+                $scope.error = response.statusText;
             });
         }
     ]

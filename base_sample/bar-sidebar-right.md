@@ -1,12 +1,16 @@
 ---
-layout: base/bar-sidebar-right
+layout: base/bar/bar-sidebar-right
 title: "bar-sidebar-right"
 ---
 
 <div class="sidebar_start"></div>
 Sidebar content.
 
-<a href="#" class="btn btn-default btn-lg">Amet nullam consequat</a>
+<ul id="getting-involved-tabs" class="nav nav-pills nav-stacked" data-tabs="tabs">
+  <li class="active"><a href="#amet" data-toggle="tab">Amet</a></li>
+  <li><a href="#nullam" data-toggle="tab">Nullam</a></li>
+  <li><a href="#consequat" data-toggle="tab">Consequat</a></li>
+</ul>
 <div class="sidebar_end"></div>
 
 <div class="top_start"></div>

@@ -1,16 +1,22 @@
 ---
-layout: base/bar-sidebar-none
-title: "title"
-title_bar: "title_bar"
-title_secondary: "title_secondary"
-
+layout: base/freelancer/freelancer
 angular_includes:
   - "{{ site.baseurl }}/app/tractdbConfig.js"
   - "{{ site.baseurl }}/app/serverConfigApp.js"
 ---
 
-<div ng-app="serverConfigApp" ng-controller="serverConfigController" ng-strict-di>
-Server Config: {{ 'serverConfig' | angular }}<br/><br/>
-<p><a href = "/login">Login</a></p>
-<p><a href = "/register">Register</a></p>
-</div>
+<!-- Header -->
+<header>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-12">
+              <img class="img-responsive" src="{{ site.baseurl }}/base_sample/freelancer/img/profile.png" alt="">
+              <div class="intro-text">
+                  <span class="name">TractDB</span>
+                  <hr class="star-light">
+                  <span class="skills">Under Development</span>
+              </div>
+          </div>
+      </div>
+  </div>
+</header>

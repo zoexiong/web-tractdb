@@ -1,1 +1,4 @@
 baseurl:    ''
+
+tractdb:
+  baseurl_pyramid: https://tractdb.org/api

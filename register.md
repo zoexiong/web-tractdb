@@ -16,7 +16,7 @@ angular_includes:
     </div>
 </header>
 
-<div class="container base-content" ng-app="loginApp" ng-controller="loginController">
+<div class="container base-content" ng-app="registerApp" ng-controller="registerController">
     <div class="row">
         <div class="col-lg-12">
             <form ng-submit="submitRegisterForm()" id="registerForm" name="registerForm" class="form-signin">

@@ -82,25 +82,26 @@ app.controller(
     [
         '$scope','$http', 'BASEURL_PYRAMID',
         function ($scope, $http, BASEURL_PYRAMID) {
+            $scope.accounts=[];
             $http({
                 method: 'GET',
                 url: BASEURL_PYRAMID + '/authenticated'
             }).then(
-                $http({
-                    method: 'GET',
-                    url: BASEURL_PYRAMID + '/accounts'
-                }).then(
-                    function(response){
-                        $scope.lists = response.data;
-                        $scope.accounts=$scope.lists['accounts'];
-                        $scope.authStatus = response.status + "," + response.statusText;
-                    },
-                    function (response) {
-                        $scope.authStatus = response.status + "," + response.statusText;
-                        window.location.href="/login"
-                    }
-                ),
                 function (response) {
+                    $http({
+                        method: 'GET',
+                        url: BASEURL_PYRAMID + '/accounts'
+                    }).then(
+                        function(response){
+                            $scope.lists = response.data;
+                            $scope.accounts=$scope.lists['accounts'];
+                            $scope.authStatus = response.status + "," + response.statusText;
+                        }
+                    );
+                    //add data to display here
+                },
+                function (response) {
+                    $scope.accounts=[];
                     window.location.href="/login";
                     $scope.authStatus = response.status + "," + response.statusText;
                 }

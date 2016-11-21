@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!--angular-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <!--app-->
+    <script src="../../app/loginApp.js"></script>
+    <script src="../../app/tractdbConfig.js"></script>
+
+</head>
+<body>
+
+
+<div ng-app="loginApp" ng-controller="accountViewController" class="row">
+    {{accounts|json}}
+    {{authStatus}}
+</div>
+
+</body>
+
+
+
+
+</html>

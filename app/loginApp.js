@@ -17,6 +17,7 @@ app.controller(
                     function (response) {
                         console.log('login success response: ' + response);
                         // TODO: on successful response, redirect user to dashboard
+                        window.location.href="/authenticated"
                     },
                     function (response) {
                         console.log('login error response: ' + response);
@@ -28,3 +29,28 @@ app.controller(
         }
     ]
 );
+
+app.controller(
+    'logoutController',
+    [
+        '$scope','$http', 'BASEURL_PYRAMID',
+        function ($scope, $http, BASEURL_PYRAMID) {
+            $scope.logout = function () {
+                $http({
+                    method: 'POST',
+                    url: BASEURL_PYRAMID + '/logout'
+                }).then(
+                    function (response) {
+                        console.log('logout success response: ' + response);
+                        // TODO: on successful response, redirect user to homepage
+                        window.location.href="/"
+                    },
+                    function (response) {
+                        console.log('logout error response: ' + response);
+                    }
+                );
+            }
+        }
+    ]
+);
+

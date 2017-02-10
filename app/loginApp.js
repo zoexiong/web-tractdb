@@ -1,10 +1,10 @@
-var app = angular.module('loginApp', ['tractdb.config']);
+var app = angular.module('loginApp', ['tractdb.config','ngCookies']);
 
 app.controller(
     'loginController',
     [
-        '$scope', '$http', 'BASEURL_PYRAMID',
-        function ($scope, $http, BASEURL_PYRAMID) {
+        '$scope', '$http', 'BASEURL_PYRAMID', '$cookies',
+        function ($scope, $http, BASEURL_PYRAMID, $cookies) {
             // TODO: stylistically, this 'bag of parameters' seems bad
             $scope.viewModel = {};
             $scope.submitLoginForm = function () {
@@ -16,8 +16,11 @@ app.controller(
                 }).then(
                     function (response) {
                         console.log('login success response: ' + response);
-                        // TODO: on successful response, redirect user to dashboard
-                        window.location.href="/authenticated"
+                        //Todo: store the cookie in browser
+                        //console.log("cookie:" + response.data['cookie_pyramid']);
+                        //console.log("session:" + response.data['session_couch']);
+                        // on successful response, redirect user to dashboard
+                        window.location.href="/authenticated";
                     },
                     function (response) {
                         console.log('login error response: ' + response);
@@ -29,6 +32,34 @@ app.controller(
         }
     ]
 );
+
+app.controller(
+    'authController',
+    [
+        '$scope','$http', 'BASEURL_PYRAMID', '$cookies',
+        function ($scope, $http, BASEURL_PYRAMID, $cookies) {
+            //pyramid_cookie = $cookies.get('pyramid_cookie');
+            //console.log("pyramid_cookie:" + pyramid_cookie);
+            // $scope.headers = {};
+            // $scope.headers.Cookie = pyramid_cookie;
+            $http({
+                method: 'GET',
+                url: BASEURL_PYRAMID + '/authenticated'
+                //headers:$scope.headers
+            }).then(
+                function (response) {
+                    // Todo: add session and account to the status
+                    $scope.authStatus = response.status + "," + response.statusText;
+                },
+                function (response) {
+                    $scope.authStatus = response.status + "," + response.statusText;
+                    //window.location.href="/login"
+                }
+            );
+        }
+    ]
+);
+
 
 app.controller(
     'logoutController',
@@ -55,27 +86,6 @@ app.controller(
 );
 
 
-app.controller(
-    'authController',
-    [
-        '$scope','$http', 'BASEURL_PYRAMID',
-        function ($scope, $http, BASEURL_PYRAMID) {
-                $http({
-                    method: 'GET',
-                    url: BASEURL_PYRAMID + '/authenticated'
-                }).then(
-                    function (response) {
-                        $scope.authStatus = response.status + "," + response.statusText;
-                        //add data to display here
-                    },
-                    function (response) {
-                        $scope.authStatus = response.status + "," + response.statusText;
-                        window.location.href="/login"
-                    }
-                );
-        }
-    ]
-);
 
 app.controller(
     'accountViewController',

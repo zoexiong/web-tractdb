@@ -7,7 +7,8 @@
 {% for angular_include_current in page.angular_includes %}
 <script src="{{ angular_include_current | liquify }}"></script>
 {% endfor %}
-
+<!--angular cookie-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
 <!-- Fixes and things specific to our base -->
 <script src="{{ site.baseurl }}/js/base/enable-link-to-tabs.js"></script>
 {% if layout.base-bar-sidebar-right-js %}

@@ -1,13 +1,13 @@
-var app = angular.module('registerApp', ['tractdb.config']);
+var app = angular.module('resetPasswordApp', ['tractdb.config']);
 
 app.controller(
-    'registerController',
+    'resetPasswordController',
     [
         '$scope', '$http', 'BASEURL_PYRAMID',
         function ($scope, $http, BASEURL_PYRAMID) {
             // TODO: stylistically, this 'bag of parameters' seems bad
             $scope.viewModel = {};
-            $scope.submitRegisterForm = function () {
+            $scope.submitResetPasswordForm = function () {
                 if ($scope.viewModel.password == $scope.viewModel.confirmPassword){
                     $http({
                         method: 'POST',
@@ -32,3 +32,5 @@ app.controller(
         }
     ]
 );
+
+//todo: need to finish this file

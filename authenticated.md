@@ -37,6 +37,8 @@ angular_includes:
     <div ng-controller="authController">
     <button ng-click="checkAuth()">check auth status</button> 
     <p>status:{{"authStatus"|angular}}</p>
+     <p>session:{{"session"|angular}}</p>
+      <p>account:{{"account"|angular}}</p>
     <a href="/js/views/auth.html">View my account</a>
     </div>
     </div>
